@@ -7,19 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroComponent implements OnInit {
   codeSnippet = {
-    line1: "const developer = {",
+    line1: "developer = {",
     line2: "  name: 'Vishnu T D',",
     line3: "  focus: 'Fullstack Mastery',",
     line4: "  skills: ['Angular', 'AngularJS', 'Node.js', 'PostgreSQL'],",
     line5: "  passionate: true,",
-    line6: "  motto: \"Build with Purpose\"",
+    line6: "  motto: \'Build with Purpose\'",
     line7: "};",
-    line8: "developer.showCase();"
+    line8: ".showCase();"
   };
 
   constructor() { }
 
   ngOnInit(): void {
+    const y = {
+      c : 99,
+      d: 'jff'
+    }
   }
 
   scrollToContact() {
