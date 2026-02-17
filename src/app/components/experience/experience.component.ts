@@ -15,7 +15,7 @@ interface Experience {
 export class ExperienceComponent implements OnInit {
   experiences: Experience[] = [
     {
-      period: '(January 2022 – Present)',
+      period: 'January 2022 – Present',
       title: 'Senior Software Developer',
       company: 'Lutsel Technologies Pvt Ltd',
       description: [
