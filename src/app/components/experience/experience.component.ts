@@ -40,7 +40,7 @@ export class ExperienceComponent implements OnInit {
       ]
     },
     {
-      period: 'Jabuary 2021 - May 2021',
+      period: 'January 2021 - May 2021',
       title: 'Process Associate',
       company: 'Aabasoft Technologies Pvt Ltd',
       description: [
