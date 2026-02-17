@@ -1,0 +1,22 @@
+<section class="skills" id="skills">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Inventory</span>
+      <h2 class="section-title">My Toolkit</h2>
+    </div>
+
+    <div class="skills-rows">
+      <div class="skills-row" *ngFor="let row of skillRows">
+        <div class="skill-card" *ngFor="let skill of row">
+          <div class="skill-icon">
+            <img [src]="skill.iconUrl" [alt]="skill.name" />
+          </div>
+          <div class="skill-info">
+            <span class="skill-name">{{ skill.name }}</span>
+            <span class="skill-label">Technology</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

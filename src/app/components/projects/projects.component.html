@@ -1,0 +1,40 @@
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Portfolio</span>
+      <h2 class="section-title">Featured Creations</h2>
+      <p class="section-description">
+        A selection of high-impact digital solutions, built with focus on scalability, performance, and exceptional user experience.
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card" *ngFor="let project of projects">
+        <div class="project-image">
+          <div class="image-placeholder">
+            <div class="placeholder-text">{{ project.title }}</div>
+          </div>
+        </div>
+        
+        <div class="project-content">
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-description">{{ project.description }}</p>
+          
+          <div class="project-tech">
+            <span class="tech-tag" *ngFor="let tech of project.technologies.slice(0, 5)">{{ tech }}</span>
+            <span class="tech-more" *ngIf="project.technologies.length > 5">+{{ project.technologies.length - 5 }}</span>
+          </div>
+
+          <div class="project-links">
+            <a [href]="project.liveUrl" target="_blank" class="btn-primary">Live Demo</a>
+            <a [href]="project.sourceUrl" *ngIf="project.sourceUrl && project.sourceUrl !== '#'" target="_blank" class="btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="projects-footer">
+      <a href="#" class="view-all-link">Explore Full Archive</a>
+    </div>
+  </div>
+</section>

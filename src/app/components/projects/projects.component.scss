@@ -1,0 +1,232 @@
+.projects {
+  background: var(--bg-primary);
+  position: relative;
+}
+
+.section-description {
+  text-align: center;
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 20px auto 0;
+  line-height: 1.8;
+}
+
+.projects-grid {
+  display: grid;
+  gap: 60px;
+  margin-top: 60px;
+}
+
+.project-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 40px;
+  background: rgba(42, 10, 10, 0.3);
+  border-radius: 20px;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+
+  &:nth-child(even) {
+    .project-image {
+      order: 2;
+    }
+
+    .project-content {
+      order: 1;
+    }
+  }
+
+  &:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px var(--red-glow);
+    background: rgba(42, 10, 10, 0.5);
+  }
+}
+
+.project-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.image-placeholder {
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: linear-gradient(135deg, rgba(42, 10, 10, 0.6) 0%, rgba(26, 5, 5, 0.8) 100%);
+  border: 2px solid rgba(220, 38, 38, 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.15), transparent 60%);
+    animation: rotate 15s linear infinite;
+  }
+  
+  &:hover {
+    border-color: var(--accent-primary);
+    transform: scale(1.02);
+  }
+}
+
+.placeholder-text {
+  position: relative;
+  z-index: 2;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-align: center;
+  padding: 20px;
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.project-description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tech-tag {
+  padding: 6px 14px;
+  background: rgba(26, 5, 5, 0.6);
+  color: var(--text-primary);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: var(--accent-primary);
+    background: rgba(42, 10, 10, 0.8);
+  }
+}
+
+.tech-more {
+  padding: 6px 14px;
+  background: var(--accent-primary);
+  color: white;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.project-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.projects-footer {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.view-all-link {
+  display: inline-block;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background: var(--accent-primary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px var(--red-glow);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .project-card {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 30px;
+
+    &:nth-child(even) {
+      .project-image {
+        order: 1;
+      }
+
+      .project-content {
+        order: 2;
+      }
+    }
+  }
+
+  .project-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    padding: 20px;
+  }
+
+  .project-title {
+    font-size: 24px;
+  }
+
+  .project-description {
+    font-size: 15px;
+  }
+
+  .project-links {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    text-align: center;
+    width: 100%;
+  }
+}

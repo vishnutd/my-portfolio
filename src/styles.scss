@@ -1,0 +1,248 @@
+/* Global Styles with Exact Red Theme */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0a0000;
+  --bg-secondary: #1a0505;
+  --bg-tertiary: #2a0a0a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent-primary: #dc2626;
+  --accent-secondary: #991b1b;
+  --accent-hover: #ef4444;
+  --border-color: #3a1010;
+  --card-bg: rgba(26, 5, 5, 0.5);
+  --red-glow: rgba(220, 38, 38, 0.3);
+  
+  /* Cursor positions */
+  --cursor-x: 0px;
+  --cursor-y: 0px;
+  --cursor-dot-x: 0px;
+  --cursor-dot-y: 0px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Smooth Cursor */
+* {
+  cursor: none !important;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--accent-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  left: var(--cursor-x);
+  top: var(--cursor-y);
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, border-width 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  left: var(--cursor-dot-x);
+  top: var(--cursor-dot-y);
+  transform: translate(-50%, -50%);
+  transition: width 0.1s ease, height 0.1s ease;
+}
+
+a, button {
+  &:hover ~ body::before {
+    width: 60px;
+    height: 60px;
+    border-width: 1px;
+  }
+  
+  &:hover ~ body::after {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+section {
+  min-height: 100vh;
+  padding: 100px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--red-glow);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--red-glow), 0 0 40px var(--red-glow);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Utility Classes */
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-primary {
+  padding: 12px 30px;
+  background: var(--accent-primary);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  &:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px var(--red-glow);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+}
+
+.btn-secondary {
+  padding: 12px 30px;
+  background: transparent;
+  color: white;
+  border: 2px solid var(--accent-primary);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  position: relative;
+  
+  &:hover {
+    background: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px var(--red-glow);
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 5px;
+  
+  &:hover {
+    background: var(--accent-hover);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  section {
+    padding: 60px 0;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  /* Hide custom cursor on mobile */
+  body::before,
+  body::after {
+    display: none;
+  }
+  
+  * {
+    cursor: auto !important;
+  }
+}

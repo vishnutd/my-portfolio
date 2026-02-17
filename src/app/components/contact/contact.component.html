@@ -1,0 +1,91 @@
+<section class="contact" id="contact" style="padding: 0;">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Let’s Build Something</span>
+      <h2 class="section-title">Connect With Me</h2>
+      <p class="section-description">
+        Got an idea, project, or opportunity? Let’s connect and build something meaningful together.
+      </p>
+    </div>
+
+    <div class="contact-content">
+      <div class="contact-form-wrapper">
+        <h3 class="form-title">Send a Message</h3>
+        <p class="form-subtitle">I'll get back to you within 24 hours.</p>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+          <div class="form-group">
+            <input 
+              type="text" 
+              formControlName="name" 
+              placeholder="Your Name"
+              class="form-input"
+              [class.error]="f.name.invalid && f.name.touched">
+            <span class="error-message" *ngIf="f.name.invalid && f.name.touched">
+              Please enter your name (at least 2 characters)
+            </span>
+          </div>
+
+          <div class="form-group">
+            <input 
+              type="email" 
+              formControlName="email" 
+              placeholder="Your Email"
+              class="form-input"
+              [class.error]="f.email.invalid && f.email.touched">
+            <span class="error-message" *ngIf="f.email.invalid && f.email.touched">
+              Please enter a valid email address
+            </span>
+          </div>
+
+          <div class="form-group">
+            <textarea 
+              formControlName="message" 
+              placeholder="Your Message"
+              rows="6"
+              class="form-input"
+              [class.error]="f.message.invalid && f.message.touched"></textarea>
+            <span class="error-message" *ngIf="f.message.invalid && f.message.touched">
+              Please enter a message (at least 10 characters)
+            </span>
+          </div>
+
+          <button 
+            type="submit" 
+            class="btn-primary submit-btn"
+            [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+          </button>
+
+          <div class="success-message" *ngIf="isSubmitted">
+            ✓ Message sent successfully! I'll get back to you soon.
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-info-wrapper">
+        <h3 class="info-title">Direct Contact</h3>
+
+        <div class="contact-items">
+          <a [href]="item.link" class="contact-item" *ngFor="let item of contactInfo">
+            <div class="contact-type">{{ item.type }}</div>
+            <div class="contact-value">{{ item.value }}</div>
+          </a>
+        </div>
+
+        <div class="social-section">
+          <h4 class="social-title">Social Presence</h4>
+          <div class="social-links">
+            <a [href]="link.url" 
+               target="_blank" 
+               class="social-link" 
+               *ngFor="let link of socialLinks"
+               [attr.aria-label]="link.name">
+              {{ link.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

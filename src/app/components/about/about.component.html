@@ -1,0 +1,43 @@
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Discovery</span>
+      <h2 class="section-title">About The Architect</h2>
+    </div>
+
+    <div class="about-content">
+      <div class="about-text">
+        <p class="about-description">
+          <i>I'm <strong>Vishnu T D</strong>, a passionate Full-Stack Developer focused on crafting modern web
+            applications
+            using Angular, Node.js, and PostgreSQL. I specialize in building responsive frontend experiences alongside
+            scalable backend architectures, creating seamless end-to-end solutions.
+
+            From designing dynamic Angular interfaces to developing optimized REST APIs and structured database schemas,
+            I
+            aim to deliver performant, maintainable, and production-ready applications. Driven by curiosity and
+            continuous
+            learning, I constantly refine my skills to build impactful digital experiences with clean and efficient
+            engineering practices.</i>
+        </p>
+
+        <div class="about-stats">
+          <div class="stat-item" *ngFor="let stat of stats">
+            <div class="stat-value">{{ stat.value }}</div>
+            <div class="stat-label">{{ stat.label }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-image">
+        <div class="image-wrapper">
+          <div class="image-placeholder">
+            <div class="image-content">
+              <img src="/assets/profile.jpeg" alt="Profile Image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

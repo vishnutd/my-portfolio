@@ -1,0 +1,39 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-text">Vishnu T D</span>
+        </div>
+        <p class="footer-tagline">
+          Full-Stack Developer specializing in designing and delivering high-performance applications through modern
+          architecture, efficient backend systems, and intuitive user interfaces. </p>
+      </div>
+
+      <div class="footer-nav">
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links">
+          <li *ngFor="let link of navLinks">
+            <a [href]="link.link" (click)="scrollToSection($event, link.link)">{{ link.label }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4 class="footer-title">Connect</h4>
+        <ul class="footer-links">
+          <li>
+            <a href="mailto:tdvishnu04@gmail.com">tdvishnu04@gmail.com</a>
+          </li>
+          <li>
+            <a href="tel:+916363510347">+916363510347</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">© {{ currentYear }} Vishnu T D. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

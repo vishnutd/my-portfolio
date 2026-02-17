@@ -1,0 +1,37 @@
+<header [class.scrolled]="isScrolled">
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-wrapper">
+
+        <!-- ── VTD LOGO ── -->
+        <a href="#" class="logo" aria-label="Vishnu T D – Home">
+          <div class="vtd-logo">
+            <div class="vtd-letters-row">
+              <span class="vtd-v">V</span>
+              <div class="vtd-slash"></div>
+              <div class="vtd-td-wrap">
+                <span class="vtd-t">T</span>
+                <span class="vtd-d">D</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!-- ── /VTD LOGO ── -->
+
+        <ul class="nav-menu" [class.active]="isMobileMenuOpen">
+          <li *ngFor="let item of navItems" class="nav-item">
+            <a [href]="item.link" class="nav-link" (click)="scrollToSection($event, item.link)">
+              {{ item.label }}
+            </a>
+          </li>
+        </ul>
+
+        <button class="mobile-menu-btn" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
