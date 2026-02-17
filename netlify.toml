@@ -1,6 +1,6 @@
 [build]
   command = "ng build --configuration production"
-  publish = "dist/portfolio-app/browser"
+  publish = "dist/portfolio-app"
 
 [build.environment]
   NODE_OPTIONS = "--openssl-legacy-provider"
