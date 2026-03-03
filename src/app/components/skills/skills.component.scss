@@ -1,13 +1,28 @@
+// ── Breakpoint mixins ──────────────────────────────────────────
+@mixin respond-to($bp) {
+  @if $bp == tablet-lg  { @media (max-width: 1024px) { @content; } }
+  @if $bp == tablet     { @media (max-width: 768px)  { @content; } }
+  @if $bp == mobile     { @media (max-width: 480px)  { @content; } }
+  @if $bp == mobile-sm  { @media (max-width: 360px)  { @content; } }
+}
+
+// ── Section ────────────────────────────────────────────────────
 .skills {
   background: var(--bg-secondary);
   position: relative;
   padding: 80px 0;
+
+  @include respond-to(tablet) { padding: 60px 0; }
+  @include respond-to(mobile) { padding: 48px 0; }
 }
 
-/* ─── Section Header ────────────────────────────────────── */
+// ── Section Header ─────────────────────────────────────────────
 .section-header {
   text-align: center;
   margin-bottom: 60px;
+
+  @include respond-to(tablet) { margin-bottom: 40px; }
+  @include respond-to(mobile) { margin-bottom: 32px; }
 }
 
 .section-tag {
@@ -18,29 +33,54 @@
   text-transform: uppercase;
   display: block;
   margin-bottom: 10px;
+
+  @include respond-to(mobile) {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
 }
 
 .section-title {
-  font-size: 48px;
+  font-size: clamp(28px, 5vw, 48px);
   font-weight: 800;
   color: var(--text-primary);
 }
 
-/* ─── Rows ──────────────────────────────────────────────── */
+// ── Rows ───────────────────────────────────────────────────────
 .skills-rows {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
+
+  // On mobile flatten into one unified grid so cards fill evenly
+  @include respond-to(tablet) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  @include respond-to(mobile) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
 }
 
 .skills-row {
+  // Desktop: each row is its own flex row
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
   justify-content: center;
+
+  @include respond-to(tablet-lg) { gap: 12px; }
+
+  // Mobile: row wrapper disappears — cards go into parent grid
+  @include respond-to(tablet) {
+    display: contents;
+  }
 }
 
-/* ─── Card ──────────────────────────────────────────────── */
+// ── Card ───────────────────────────────────────────────────────
 .skill-card {
   display: flex;
   align-items: center;
@@ -49,10 +89,35 @@
   background: rgba(14, 3, 3, 0.82);
   border-radius: 14px;
   border: 1px solid rgba(220, 38, 38, 0.14);
-  min-width: 190px;
   cursor: default;
   transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
   backdrop-filter: blur(12px);
+  box-sizing: border-box;
+  min-width: 190px; // desktop: enough room for full name
+
+  @include respond-to(tablet-lg) {
+    min-width: 165px;
+    padding: 14px 18px;
+    gap: 12px;
+  }
+
+  @include respond-to(tablet) {
+    min-width: 0;    // mobile: grid controls width
+    width: 100%;
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  @include respond-to(mobile) {
+    padding: 10px 12px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+
+  @include respond-to(mobile-sm) {
+    padding: 8px 10px;
+    gap: 6px;
+  }
 
   &:hover {
     transform: translateY(-6px);
@@ -61,7 +126,7 @@
   }
 }
 
-/* ─── Icon ──────────────────────────────────────────────── */
+// ── Icon ───────────────────────────────────────────────────────
 .skill-icon {
   width: 46px;
   height: 46px;
@@ -76,16 +141,36 @@
   img {
     width: 100%;
     height: 100%;
-    // CSS filter to recolor black Simple Icons SVGs to #dc2626 red
     filter: invert(22%) sepia(96%) saturate(2600%) hue-rotate(344deg) brightness(98%) contrast(105%);
+  }
+
+  @include respond-to(tablet) {
+    width: 38px;
+    height: 38px;
+    padding: 7px;
+    border-radius: 8px;
+  }
+
+  @include respond-to(mobile) {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    border-radius: 7px;
+  }
+
+  @include respond-to(mobile-sm) {
+    width: 28px;
+    height: 28px;
+    padding: 5px;
   }
 }
 
-/* ─── Text ──────────────────────────────────────────────── */
+// ── Text ───────────────────────────────────────────────────────
 .skill-info {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0; // prevent text overflow in flex
 }
 
 .skill-name {
@@ -94,6 +179,9 @@
   color: var(--text-primary);
   letter-spacing: 0.8px;
   text-transform: uppercase;
+  @include respond-to(tablet)    { font-size: 12px; letter-spacing: 0.5px; }
+  @include respond-to(mobile)    { font-size: 11px; letter-spacing: 0.4px; }
+  @include respond-to(mobile-sm) { font-size: 10px; }
 }
 
 .skill-label {
@@ -102,18 +190,7 @@
   color: rgba(220, 38, 38, 0.55);
   letter-spacing: 1.6px;
   text-transform: uppercase;
-}
 
-/* ─── Responsive ────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .section-title { font-size: 36px; }
-  .skill-card { min-width: 160px; padding: 14px 18px; }
-}
-
-@media (max-width: 768px) {
-  .section-title { font-size: 28px; }
-  .skills-row { gap: 12px; }
-  .skill-card { min-width: 140px; padding: 12px 16px; gap: 10px; }
-  .skill-icon { width: 36px; height: 36px; }
-  .skill-name { font-size: 13px; }
+  @include respond-to(mobile)    { font-size: 8px; letter-spacing: 1px; }
+  @include respond-to(mobile-sm) { font-size: 7.5px; }
 }
